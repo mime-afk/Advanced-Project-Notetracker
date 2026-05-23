@@ -36,30 +36,87 @@ The application allows users to:
 
 ### User Stories
 
-1: As a student, I want to add or delete subjects so that I can organize my courses in one place.
+| **ID** | **As a** | **I want to**                     | **So that**                                                    |
+| ------ | -------- | --------------------------------- | -------------------------------------------------------------- |
+| US_001 | Student  | Add subjects                      | I can organize my courses in one place.                        |
+| US_002 | Student  | Delete subjects                   | I can remove courses I no longer take.                         |
+| US_003 | Student  | Add grades to my subjects         | I can track my performance in each course.                     |
+| US_004 | Student  | Delete grades                     | I can correct mistakes or remove incorrect entries.            |
+| US_005 | Student  | See the average grade per subject | I can quickly understand my performance in individual courses. |
+| US_006 | Student  | See my overall average            | I can assess my general academic performance.                  |
+| US_007 | Student  | Use a simple interface            | I can manage my grades without needing training.               |
+| US_008 | Student  | Have my data persist              | I don’t lose my grades when I close the app.                   |
 
 ---
+## Use Cases
 
-2: As a student, I want to add or delete grades to my subjects so that I can track my performance in each course.
+### **Main Use Cases**
 
----
+- **Manage Subjects** (Add/Delete)
+- **Manage Grades** (Add/Delete)
+- **View Averages** (Per Subject & Overall)
+- **Persist Data** (SQLite Database)
 
-3: As a student, I want to see the average grade for each subject so that I can quickly understand my performance in individual courses.
+### **Actors**
 
----
-
-4: As a student, I want to see my overall average across all subjects so that I can assess my general academic performance.
-
+- **Student**
 ---
 ## Architecture
 
-Browser  
-↓  
-NiceGUI UI (Python)  
-↓  
-GradeService (Business Logic)  
-↓  
-SQLite Database (SQLAlchemy ORM)  
+- **UI**: NiceGUI (browser-based interface)
+- **Application Logic**: `grade_service.py` (business logic)
+- **Persistence**: SQLite + SQLAlchemy ORM
+
+### **Design Decisions**
+
+- **MVC-like structure** (Model–View–Controller)
+- **Clear separation of concerns** (UI, logic, database)
+- **Business logic independent of UI**
+
+### **Design Patterns Used**
+
+- **Model-View-Controller (MVC)**: Separates UI, logic, and data for maintainability.
+- **Facade Pattern**: Simplifies database setup and access
+
+---
+##  Database and ORM
+
+The application uses **SQLAlchemy** to map domain objects to a **SQLite database**.
+
+### **Entities**
+
+- `Subject`
+- `Grade`
+
+### **Relationships**
+
+- One `Subject` → many `Grade`
 
 ---
 
+##  Project Requirements
+
+The app meets the following criteria:
+
+1. **Browser-based UI** using NiceGUI.
+2. **Data validation** (e.g., grade ranges, non-empty subject names).
+3. **ORM for database management** (SQLAlchemy).
+
+
+---
+
+##  Implementation
+
+### **Technology**
+
+- Python 3.8+
+- NiceGUI
+- SQLAlchemy
+- SQLite
+- pytest
+
+### **Libraries Used**
+
+- **nicegui** – UI framework
+- **sqlalchemy** – ORM and database toolkit
+- **pytest** – Testing
