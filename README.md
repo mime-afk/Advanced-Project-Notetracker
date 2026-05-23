@@ -18,7 +18,7 @@ The project follows the requirements of the Advanced Programming module:
 
 ### Problem
 
-Students often use diffrent apps or spreadsheets to track their grades.
+Students often use diffrent apps or spreadsheets to track grades for different subjects, leading to confusion.Calculating averages for each subject or overall performance manually is time-consuming and error-prone.
 
 ---
 
