@@ -7,6 +7,14 @@ Session = sessionmaker(bind=engine)
 Base = declarative_base()
 
 
+def use_database(database_url):
+    global engine
+    global Session
+
+    engine = create_engine(database_url)
+    Session = sessionmaker(bind=engine)
+
+
 def create_tables():
     from models import Grade, Semester, Subject
     Base.metadata.create_all(engine)

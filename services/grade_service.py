@@ -1,12 +1,12 @@
 from sqlalchemy.orm import joinedload
 
-from database import Session
+import database
 from models import Grade, Semester, Subject
 
 
 class GetSemestersService:
     def execute(self):
-        session = Session()
+        session = database.Session()
         try:
             return (
                 session.query(Semester)
@@ -20,7 +20,7 @@ class GetSemestersService:
 
 class GetSemesterService:
     def execute(self, semester_id):
-        session = Session()
+        session = database.Session()
         try:
             return (
                 session.query(Semester)
@@ -34,7 +34,7 @@ class GetSemesterService:
 
 class GetSubjectsService:
     def execute(self):
-        session = Session()
+        session = database.Session()
         try:
             return (
                 session.query(Subject)
@@ -53,7 +53,7 @@ class AddSemesterService:
         if name == "":
             raise ValueError("Semester name cannot be empty.")
 
-        session = Session()
+        session = database.Session()
         try:
             old_semester = session.query(Semester).filter_by(name=name).first()
             if old_semester is not None:
@@ -71,7 +71,7 @@ class AddSemesterService:
 
 class DeleteSemesterService:
     def execute(self, semester_id):
-        session = Session()
+        session = database.Session()
         try:
             semester = session.get(Semester, semester_id)
 
@@ -92,7 +92,7 @@ class AddSubjectService:
         if name == "":
             raise ValueError("Subject name cannot be empty.")
 
-        session = Session()
+        session = database.Session()
         try:
             old_subject = session.query(Subject).filter_by(name=name, semester_id=semester_id).first()
             if old_subject is not None:
@@ -116,7 +116,7 @@ class AddSubjectService:
 
 class DeleteSubjectService:
     def execute(self, subject_id):
-        session = Session()
+        session = database.Session()
         try:
             subject = session.get(Subject, subject_id)
 
@@ -151,7 +151,7 @@ class AddGradeService:
         grade_value = self.grade_validator.validate(value)
         topic = topic.strip()
 
-        session = Session()
+        session = database.Session()
         try:
             subject = session.get(Subject, subject_id)
 
@@ -170,7 +170,7 @@ class AddGradeService:
 
 class DeleteGradeService:
     def execute(self, grade_id):
-        session = Session()
+        session = database.Session()
         try:
             grade = session.get(Grade, grade_id)
 
@@ -186,7 +186,7 @@ class DeleteGradeService:
 
 class OverallAverageService:
     def execute(self):
-        session = Session()
+        session = database.Session()
         try:
             grades = session.query(Grade).all()
 
