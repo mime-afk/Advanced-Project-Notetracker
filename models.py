@@ -31,7 +31,7 @@ class Subject(Base):
     __tablename__ = "subjects"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String, unique=True, nullable=False)
+    name = Column(String, nullable=False)
     semester_id = Column(Integer, ForeignKey("semesters.id"), nullable=True)
 
     semester = relationship("Semester", back_populates="subjects")
@@ -53,6 +53,7 @@ class Grade(Base):
 
     id = Column(Integer, primary_key=True)
     value = Column(Float, nullable=False)
+    topic = Column(String, default="")
     subject_id = Column(Integer, ForeignKey("subjects.id"))
 
     subject = relationship("Subject", back_populates="grades")
