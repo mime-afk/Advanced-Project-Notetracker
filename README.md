@@ -218,6 +218,6 @@ The following test cases use the project test-case template and cover both the e
 ## Team & Contributions
 | Name | Contribution |
 |---  | ---  |
-|Louie| UI/UX, logic|, documentation
+|Louie| UI/UX, logic, documentation|
 |Michael| Database, logic, documentation|
 |Aimen| Testing, logic, documentation|
