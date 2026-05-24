@@ -39,20 +39,23 @@ The application allows users to:
 
 | **ID** | **As a** | **I want to**                     | **So that**                                                    |
 | ------ | -------- | --------------------------------- | -------------------------------------------------------------- |
-| US_001 | Student  | Add subjects                      | I can organize my courses in one place.                        |
-| US_002 | Student  | Delete subjects                   | I can remove courses I no longer take.                         |
-| US_003 | Student  | Add grades to my subjects         | I can track my performance in each course.                     |
-| US_004 | Student  | Delete grades                     | I can correct mistakes or remove incorrect entries.            |
-| US_005 | Student  | See the average grade per subject | I can quickly understand my performance in individual courses. |
-| US_006 | Student  | See my overall average            | I can assess my general academic performance.                  |
-| US_007 | Student  | Use a simple interface            | I can manage my grades without needing training.               |
-| US_008 | Student  | Have my data persist              | I don’t lose my grades when I close the app.                   |
+| US_001 | Student  | Add a semester                    | I can organize my semesters in one place.                      |
+| US_002 | Student  | delete a semester                 | I can remove my semesters I no longer need.                    |
+| US_003 | Student  | Add subjects                      | I can organize my courses in one place.                        |
+| US_004 | Student  | Delete subjects                   | I can remove courses I no longer take.                         |
+| US_005 | Student  | Add grades to my subjects         | I can track my performance in each course.                     |
+| US_006 | Student  | Delete grades                     | I can correct mistakes or remove incorrect entries.            |
+| US_007 | Student  | See the average grade per subject | I can quickly understand my performance in individual courses. |
+| US_008 | Student  | See my overall average            | I can assess my general academic performance.                  |
+| US_009 | Student  | Use a simple interface            | I can manage my grades without needing training.               |
+| US_010 | Student  | Have my data persist              | I don’t lose my grades when I close the app.                   |
 
 ---
 ## Use Cases
 
 ### **Main Use Cases**
 
+- **Manage Semester** (Add/Delete)
 - **Manage Subjects** (Add/Delete)
 - **Manage Grades** (Add/Delete)
 - **View Averages** (Per Subject & Overall)
