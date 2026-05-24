@@ -1,4 +1,5 @@
 # Advanced-Project-Notetracker (Browser App)
+<img width="1873" height="928" alt="image" src="https://github.com/user-attachments/assets/640c1418-e56f-4f2e-83ee-237d3a69c789" />
 
 ---
 The goal of this project is to develop a browser-based grade tracker using Python, NiceGUI, SQLite, and SQLModel. 
