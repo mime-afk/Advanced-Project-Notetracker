@@ -89,16 +89,44 @@ The application uses **SQLAlchemy** to map domain objects to a **SQLite database
 
 ### **Entities**
 
+- `Semester`
 - `Subject`
 - `Grade`
 
 ### **Relationships**
 
+- One `Semester` → many `Subject`
 - One `Subject` → many `Grade`
 
 ### Database Schema
 
 <img src="/database-schema.png" alt="Database Schema" width="50%">
+
+---
+
+## Repository structure
+
+```
+Advanced-Project-Notetracker/
+│
+├── main.py                  # UI layer — NiceGUI views, navigation, @ui.refreshable page
+├── models.py                # ORM models — Semester, Subject, Grade + average() methods
+├── database.py              # Engine, Session, Base, table creation and migrations
+├── requirements.txt         # nicegui, sqlalchemy, pytest
+├── README.md
+├── LICENSE
+│
+├── services/
+│   ├── __init__.py
+│   └── grade_service.py     # GradeService facade + 9 service classes + GradeValidator
+│
+└── tests/
+    ├── __init__.py
+    ├── conftest.py           # In-memory DB setup, patches Session before any imports
+    ├── test_unit.py          # 6 unit tests — model methods, validation
+    ├── test_database.py      # 3 DB tests — persistence, cascade delete, empty DB
+    └── test_integration.py  # 3 integration tests — end-to-end flows and averages
+```
 
 ---
 
@@ -224,3 +252,15 @@ The following test cases use the project test-case template and cover both the e
 |Louie| UI/UX, logic, documentation|
 |Michael| Database, logic, documentation|
 |Aimen| Testing, logic, documentation|
+
+---
+
+## How to run
+
+1. Install dependencies: `pip install -r requirements.txt`
+2. Start the app: `python main.py`
+3. Open your browser at: `http://localhost:8080`
+
+## How to run the tests
+
+pytest tests/ -v
