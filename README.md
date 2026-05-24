@@ -92,6 +92,10 @@ The application uses **SQLAlchemy** to map domain objects to a **SQLite database
 
 - One `Subject` → many `Grade`
 
+### Database Schema
+
+<img src="/database-schema.png" alt="Database Schema" width="50%">
+
 ---
 
 ##  Project Requirements
@@ -120,3 +124,91 @@ The app meets the following criteria:
 - **nicegui** – UI framework
 - **sqlalchemy** – ORM and database toolkit
 - **pytest** – Testing
+
+---
+
+## Test Cases
+
+The following test cases use the project test-case template and cover both the existing automated tests and manual UI checks.
+
+### Automated Test Cases
+
+#### TC_001
+
+| Field | Value |
+| --- | --- |
+| Test case title/description | Verify that grade validation rejects text input. |
+| Preconditions | Test environment is set up and `GradeValidator` is available. |
+| Test steps | Call `GradeValidator.validate("excellent")`. |
+| Test data/input | `"excellent"` |
+| Expected result | A `ValueError` with the message `Grade must be a number.` is raised. |
+| Actual result | A `ValueError` with the correct message is raised. |
+| Status | Pass |
+| Comments | Covered by `tests/test_unit.py::TestGradeValidator::test_non_numeric_value_raises_clear_error`. |
+
+#### TC_002
+
+| Field | Value |
+| --- | --- |
+| Test case title/description | Verify that a new grade is stored in the database with the correct relationships. |
+| Preconditions | Test database is created and empty. |
+| Test steps | Create a subject, add a grade with a topic, commit the transaction, then query the database. |
+| Test data/input | Subject `Math`, grade `1.25`, topic `Linear Algebra` |
+| Expected result | The grade is stored with value `1.25`, topic `Linear Algebra`, and linked subject `Math`. |
+| Actual result | The grade is persisted with the expected values and relationship. |
+| Status | Pass |
+| Comments | Covered by `tests/test_database.py::test_saving_grade_persists_topic_and_subject_relationship`. |
+
+#### TC_003
+
+| Field | Value |
+| --- | --- |
+| Test case title/description | Verify the full application flow from creating a semester to calculating the overall average. |
+| Preconditions | Isolated test database is available. |
+| Test steps | Create a semester, add a subject, add a grade, reload the semester, and read the averages. |
+| Test data/input | Semester `1. Semester`, subject `Math`, grade `1.75`, topic `Algebra Test` |
+| Expected result | The subject average, semester average, and overall average are all `1.75`. |
+| Actual result | All averages are calculated as `1.75`. |
+| Status | Pass |
+| Comments | Covered by `tests/test_integration.py::TestGradeServiceEndToEnd::test_grade_flow_updates_semester_and_overall_average`. |
+
+### Manual Test Cases
+
+#### TC_004
+
+| Field | Value |
+| --- | --- |
+| Test case title/description | Verify that a user can create a new semester in the application. |
+| Preconditions | Application is running in the browser. |
+| Test steps | Enter a semester name in the semester input field and click **Add Semester**. |
+| Test data/input | `1. Semester` |
+| Expected result | A new semester card appears and a confirmation notification is shown. |
+| Actual result | ____________________ |
+| Status | ____________________ |
+| Comments | Manual UI test for semester creation feedback and rendering. |
+
+#### TC_005
+
+| Field | Value |
+| --- | --- |
+| Test case title/description | Verify that a subject and its grade are visible inside the selected semester. |
+| Preconditions | At least one semester exists and can be opened. |
+| Test steps | Open a semester, add a subject, enter a grade and topic, then click **Add Grade**. |
+| Test data/input | Subject `Math`, grade `2.0`, topic `Algebra` |
+| Expected result | The subject appears in the semester view, the grade row is shown, and the subject average is updated. |
+| Actual result | ____________________ |
+| Status | ____________________ |
+| Comments | Manual UI test for nested subject and grade rendering. |
+
+#### TC_006
+
+| Field | Value |
+| --- | --- |
+| Test case title/description | Verify that deleting a grade removes it from the list and updates the average. |
+| Preconditions | A semester, subject, and at least one grade already exist. |
+| Test steps | Open the semester, locate the grade row, click the delete button (`x`), and observe the updated values. |
+| Test data/input | Existing grade entry, for example `2.0` with topic `Algebra` |
+| Expected result | The selected grade disappears, a notification is shown, and the average is recalculated. |
+| Actual result | ____________________ |
+| Status | ____________________ |
+| Comments | Manual UI test for delete behavior and live refresh. |
