@@ -2,7 +2,7 @@
 <img width="1873" height="928" alt="image" src="https://github.com/user-attachments/assets/640c1418-e56f-4f2e-83ee-237d3a69c789" />
 
 ---
-The goal of this project is to develop a browser-based grade tracker using Python, NiceGUI, SQLite, and SQLModel. 
+The goal of this project is to develop a browser-based grade tracker using Python, NiceGUI and SQLAlchemy.
 
 The project follows the requirements of the Advanced Programming module:
 
@@ -10,7 +10,7 @@ The project follows the requirements of the Advanced Programming module:
 - NiceGUI as frontend technology
 - Server-side Python application logic
 - SQLite database for persistent data storage
-- ORM-based data access using SQLModel
+- ORM-based data access using SQLAlchemy
 - Object-oriented structure
 - Automated and documented tests
 - GitHub-based collaboration
@@ -213,3 +213,11 @@ The following test cases use the project test-case template and cover both the e
 | Actual result | ____________________ |
 | Status | ____________________ |
 | Comments | Manual UI test for delete behavior and live refresh. |
+
+---
+## Team & Contributions
+| Name | Contribution |
+|---  | ---  |
+|Louie| UI/UX, logic|, documentation
+|Michael| Database, logic, documentation|
+|Aimen| Testing, logic, documentation|
