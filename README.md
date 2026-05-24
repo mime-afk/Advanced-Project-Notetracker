@@ -73,15 +73,15 @@ The application allows users to:
 
 ### **Design Decisions**
 
-- **MVC-like structure** (Model–View–Controller)
+- **MVC-like structure** (Model–View–Controller) 
 - **Clear separation of concerns** (UI, logic, database)
 - **Business logic independent of UI**
 
 ### **Design Patterns Used**
 
-- **Model-View-Controller (MVC)**: Separates UI, logic, and data for maintainability.
-- **Facade Pattern**: Simplifies database setup and access
-
+- **Model-View-Controller (MVC)**: keeps the NiceGUI UI completely free of business logic, making the service layer independently testable.
+- **Facade Pattern**: Facade: GradeService exposes a single clean interface so main.py never calls individual service classes directly
+- **SQLAlchemy ORM**: avoids raw SQL and makes cascade deletes and relationships declarative.
 ---
 ##  Database and ORM
 
